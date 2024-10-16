@@ -35,8 +35,8 @@ function addNote(){
 function saveNotes(){
 
     const notes = document.querySelectorAll(".note textarea"); //select all textareas in node.
-    const data = Array.from(notes).map(note => note.value); //allnodes converted into array using array.from() function so that 
-    //we can use array functions on it.
+    const data = Array.from(notes).map(note => note.value); //allnodes converted into array using array.from() function  
+    //so that we can use array functions like map on it.
     console.log(notes,data);
 
     if(data.length ===""){
@@ -47,3 +47,26 @@ function saveNotes(){
     }
 
 }
+
+function loadNotes(){
+
+    const lsNotes = JSON.parse(localStorage.getItem("notes")); //getItem() used to get value of key from local storage. 
+    //The retrieved value is JSON, so it WILL parsed using JSON.parse().
+
+    if(lsNotes !==null){
+        lsNotes.forEach(noteText =>{
+
+        addNote();
+
+        const notes = document.querySelectorAll(".note textarea");
+        const lastNote = notes[notes.length -1];
+        lastNote.value = noteText;  
+
+        });
+    }else{
+        addNote(); //everytime we open browser, one box will always be showing. 
+    }
+
+}
+
+loadNotes();
