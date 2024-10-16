@@ -60,7 +60,7 @@ function loadNotes(){
 
         const notes = document.querySelectorAll(".note textarea");
         const lastNote = notes[notes.length -1];
-        lastNote.value = noteText;  
+        lastNote.value = noteText;  //makes last added note as our current node.
 
         });
     }else{
